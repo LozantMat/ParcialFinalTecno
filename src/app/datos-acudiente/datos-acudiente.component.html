@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h3>Datos Personales</h3>
+        <div class="campoIngreso">
+            <p class="prompt">Indique el nombre del acudiente:</p>
+            <input type="text" [formControl]="nombreAcudiente">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el apellido del acudiente:</p>
+            <input [formControl]="apellidoAcudiente" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el correo del acudiente:</p>
+            <input [formControl]="correoAcudiente" type="emal">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el telefoono del acudiente:</p>
+            <input [formControl]="telefonoAcudiente" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique la direccion del acudiente:</p>
+            <input [formControl]="direccionAcudiente" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Seleccione el estrato del acudiente:</p>
+            <select name="estrato" class="tipoDoc"  [formControl]="estratoAcudiente">
+                <option value="estrato1"> 1</option>
+                <option value="estrato2"> 2</option>
+                <option value="estrato3"> 3</option>
+                <option value="estrato4"> 4</option>
+                <option value="estrato5"> 5</option>
+                <option value="estrato6"> 6</option>
+            </select>
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Pa&iacute;s de residencia del acudiente:</p>
+            <input type="text" [formControl]="paisAcudiente">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique la fecha de nacimiento de su acudiente:</p>
+            <input type="date" [formControl]="fechaNacimientoAcudiente" (change)="fechaNacimientoSeleccionada($event)">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Indique el tipo de documento de su acudiente:</p>
+            <select name="estrato" class="tipoDoc" [formControl]="tipoDocumentoAcudiente">
+                <option value="CC"> C.C</option>
+                <option value="TI"> T.I</option>
+                <option value="CI"> CI</option>
+            </select>
+            <input type="number" [formControl]="numeroIdentificacionAcudeinte">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Indique el estado civil del acudiente:</p>
+            <select name="estrato" class="tipoDoc" [formControl]="estadoCivilAcudiente">
+                <option value="soltero">Solero(a)</option>
+                <option value="casado">Casado(a)</option>
+                <option value="divorciado">Divorciado(a)</option>
+                <option value="viudo">Viudo(a)</option>
+            </select>
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Indique su parentesco con el acudeinte:</p>
+            <input type="text" [formControl]="parentescoAcudiente">
+        </div>
+
+    </body>
+</html>
