@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h3>Datos Personales</h3>
+        <div class="campoIngreso">
+            <p class="prompt">Indique el su nombre:</p>
+            <input type="text" [formControl]="nombre">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el su apellido:</p>
+            <input [formControl]="apellido" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el su correo electroico:</p>
+            <input [formControl]="apellido" type="emal">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el su telefono:</p>
+            <input [formControl]="telefono" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el su direccion de residencia:</p>
+            <input [formControl]="direccion" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Seleccione el estrato de su residencia:</p>
+            <select name="estrato" class="tipoDoc"  [formControl]="estrato">
+                <option value="estrato1"> 1</option>
+                <option value="estrato2"> 2</option>
+                <option value="estrato3"> 3</option>
+                <option value="estrato4"> 4</option>
+                <option value="estrato5"> 5</option>
+                <option value="estrato6"> 6</option>
+            </select>
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Pa&iacute;s de residencia:</p>
+            <input type="text" [formControl]="pais">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique su fecha de nacimiento:</p>
+            <input type="date" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada($event)">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Indique su documento de identificacion:</p>
+            <select name="estrato" class="tipoDoc" [formControl]="tipoDocumento">
+                <option value="CC"> C.C</option>
+                <option value="TI"> T.I</option>
+                <option value="CI"> CI</option>
+            </select>
+            <input type="number" [formControl]="numeroIdentificacion">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Indique su estado civil:</p>
+            <select name="estrato" class="tipoDoc" [formControl]="estadoCivil">
+                <option value="soltero">Solero(a)</option>
+                <option value="casado">Casado(a)</option>
+                <option value="divorciado">Divorciado(a)</option>
+                <option value="viudo">Viudo(a)</option>
+            </select>
+        </div>
+
+    </body>
+</html>
