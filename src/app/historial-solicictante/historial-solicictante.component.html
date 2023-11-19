@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+   
+        <h3>Historial Crediticio del soicitante</h3>
+
+        <div class="campoIngreso">
+            <p>Seleccione su nivel de Sisben</p>
+            <select name="sisben" class="tipoDoc" [formControl]="nivelSisben">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Indique su ocupaci&oacute;n actual:</p>
+            <input type="text" [formControl]="ocupacion">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt"> Nombre de la empresa para la que trabaja:</p>
+            <input [formControl]="nombreEmpresa" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Direcci&oacute;n de la empresa:</p>
+            <input type="text" [formControl]="direccion">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >N&uacute;mero telef&oacute;nico de la empresa:</p>
+            <input [formControl]="telefono" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el NIT de la empresa:</p>
+            <input [formControl]="nit" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el cargo que desempeña:</p>
+            <input [formControl]="cargo" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique sus ingresos mensuales:</p>
+            <input [formControl]="ingresos" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique sus egresos mensuales:</p>
+            <input [formControl]="egresos" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique su patrimonio neto:</p>
+            <input [formControl]="patrimonio" type="number">
+        </div>
+
+    </body>
+</html>

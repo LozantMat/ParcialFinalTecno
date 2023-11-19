@@ -2,6 +2,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComponentsService } from 'src/services/components.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-datos-personales',
   templateUrl: './datos-personales.component.html',
@@ -69,6 +71,26 @@ export class DatosPersonalesComponent {
 onSubmit() {
   this.componentsService.updateFormValues(this.myForm.value);
 }
+
+  validarFecha(event:Event){ //realiza la verificacion de la fecha. La restringe dentro de los dos proximos meses. Si no cumple con este limite, pone el campo en blanco
+    const inputElement = event.target as HTMLInputElement;
+    const date = new Date(inputElement.value);
+    const currentDate = new Date();
+
+    if (date >= currentDate) {
+        this.showErrorAlert("Porfavor seleccionar una fecha valida");
+        inputElement.value = ''
+    }
+    }
+
+    showErrorAlert(errorMessage: string) {
+      Swal.fire({
+        title: 'Error!',
+        text: errorMessage,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
 }
   
   

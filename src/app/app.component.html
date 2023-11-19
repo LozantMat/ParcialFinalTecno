@@ -9,20 +9,15 @@
         <h1>LI Bank forms</h1>
       </div>
     </header>
-    
-    <main>
-      <div *ngIf="!mostrarFormularioConfirmacion">
-        <div class="contenedorFormulario">
-          <app-tipo-cuenta></app-tipo-cuenta>
-        </div>
-        <div class="contenedorFormulario">
-          <app-datos-personales></app-datos-personales>
-        </div>
-        <div class="contenedorFormulario">
-          <app-datos-acudiente></app-datos-acudiente>
-        </div>
-        <button (click)="toggleFormulario()">Enviar</button>
-      </div>
+        <main>
+          <div *ngIf="mostrarFormularioConfirmacion===false">
+            <div *ngIf="!mostrarFormularioConfirmacion">
+              <div class="contenedorFormulario"><app-tipo-cuenta></app-tipo-cuenta></div>
+            <div class="contenedorFormulario"><app-datos-personales></app-datos-personales></div>
+            <div class="contenedorFormulario"><app-datos-acudiente ></app-datos-acudiente></div>
+              <button (click)="toggleFormulario()">Enviar</button>
+            </div>
+          </div>
 
       <div *ngIf="mostrarFormularioConfirmacion">
         <app-confirmacion-ahorros></app-confirmacion-ahorros>
