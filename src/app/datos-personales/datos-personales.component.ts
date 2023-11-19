@@ -65,11 +65,9 @@ export class DatosPersonalesComponent {
   }
   @Output() datosEnviados = new EventEmitter<any>();
 
-  enviarDatos() {
-    if (this.myForm.valid) {
-      const datos = this.myForm.value;
-      this.datosEnviados.emit({ datosPersonales: datos });
-  }
+// Inside the onSubmit method, emit the form data to the parent component
+onSubmit() {
+  this.componentsService.updateFormValues(this.myForm.value);
 }
 }
   

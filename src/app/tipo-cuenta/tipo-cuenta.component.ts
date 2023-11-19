@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ComponentsService } from 'src/services/components.service';
 
 @Component({
   selector: 'app-tipo-cuenta',
@@ -21,11 +22,11 @@ export class TipoCuentaComponent {
   depositoIncial = new FormControl();
 
   myForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
     this.myForm = this.fb.group({
       tipoCuenta: ['', Validators.required],
       responsabilidadPersona: ['', Validators.required],
-      nitOpcional: ['', Validators.required],
+      nitOpcional: [''],
       motivo: ['', Validators.required],
       docIdentidad: ['', Validators.required],
       docImagen: ['', Validators.required],
@@ -84,11 +85,9 @@ export class TipoCuentaComponent {
     }
   }
   @Output() datosEnviados = new EventEmitter<any>();
-  // Resto del código...
 
-  enviarDatos() {
-    if (this.myForm.valid) {
-      const datos = this.myForm.value;
-      this.datosEnviados.emit({ tipoCuenta: datos });
-}}
+  // Inside the onSubmit method, emit the form data to the parent component
+  onSubmit() {
+    this.componentsService.updateFormValues(this.myForm.value);
+  }
 }

@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import { Subscription } from 'rxjs';
+// confirmacion-ahorros.component.ts
+import { Component, OnInit } from '@angular/core';
 import { ComponentsService } from 'src/services/components.service';
 
 @Component({
@@ -7,20 +7,20 @@ import { ComponentsService } from 'src/services/components.service';
   templateUrl: './confirmacion-ahorros.component.html',
   styleUrls: ['./confirmacion-ahorros.component.css']
 })
-export class ConfirmacionAhorrosComponent implements OnInit{
-  @Input() datosConfirmacion: any;
+export class ConfirmacionAhorrosComponent implements OnInit {
+  mostrarDatos: any;
+  randomNumber: string = '';
 
-  constructor(private componentsService: ComponentsService, private cdr: ChangeDetectorRef) {
+  constructor(private componentsService: ComponentsService) {}
 
+  ngOnInit() {
+    // Subscribe to form values changes
+    this.componentsService.formValues$.subscribe(data => {
+      this.mostrarDatos = data;
+      // Generate and store a random 10-digit number
+      this.randomNumber = this.componentsService.generateRandomNumber();
+    });
+  }
 }
-ngOnInit() {
-  this.componentsService.datosConfirmacion$.subscribe(
-    data => {
-      console.log('Datos de Confirmación recibidos:', data);
-      this.datosConfirmacion = data;
-      this.cdr.detectChanges
-    }
-  );
-}
-}
+
 

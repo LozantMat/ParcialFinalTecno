@@ -30,17 +30,17 @@ export class DatosAcudienteComponent implements OnInit{
     
       constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
         this.myForm = this.fb.group({
-          nombre: ['', Validators.required],
-          apellido: ['', Validators.required],
-          telefono: ['', Validators.required],
-          correo: ['', Validators.required],
-          direccion: ['', Validators.required],
-          pais: ['', Validators.required],
-          estrato: ['', Validators.required],
-          fechaNacimiento: ['', Validators.required],
-          tipoDocumento: ['', Validators.required],
-          estadoCivil: ['', Validators.required],
-          numeroIdentificacion: ['', Validators.required],
+          nombreAcudiente: ['', Validators.required],
+          apellidoAcudiente: ['', Validators.required],
+          telefonoAcudiente: ['', Validators.required],
+          correoAcudiente: ['', Validators.required],
+          direccionAcudiente: ['', Validators.required],
+          paisAcudiente: ['', Validators.required],
+          estratoAcudiente: ['', Validators.required],
+          fechaNacimientoAcudiente: ['', Validators.required],
+          tipoDocumentoAcudiente: ['', Validators.required],
+          estadoCivilAcudiente: ['', Validators.required],
+          numeroIdentificacionAcudiente: ['', Validators.required],
           parentescoAcudiente: ['', Validators.required],
           
         });
@@ -57,8 +57,8 @@ export class DatosAcudienteComponent implements OnInit{
       }
       @Output() datosEnviados = new EventEmitter<any>();
 
-  enviarDatos() {
-    if (this.myForm.valid) {
-      const datos = this.myForm.value;
-      this.datosEnviados.emit({ datosPersonales: datos });
-    }}}
+      // Inside the onSubmit method, emit the form data to the parent component
+      onSubmit() {
+        this.componentsService.updateFormValues(this.myForm.value);
+      }
+     }
