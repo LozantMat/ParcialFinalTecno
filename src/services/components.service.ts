@@ -8,10 +8,15 @@ export class ComponentsService {
 
   private esMenorDeEdadSource = new BehaviorSubject<boolean>(false);
   esMenorDeEdad$ = this.esMenorDeEdadSource.asObservable();
+  private esDeCreditoSource = new BehaviorSubject<boolean>(false);
+  esDeCredito$ = this.esDeCreditoSource.asObservable();
 
   actualizarEstadoEdad(esMenorDeEdad: boolean) {
     this.esMenorDeEdadSource.next(esMenorDeEdad);
   
+}
+actualizarTipoDeCuenta(esCredito:boolean) {
+    this.esDeCreditoSource.next(esCredito)
 }
 private formValuesSource = new BehaviorSubject<any>(null);
   formValues$ = this.formValuesSource.asObservable();

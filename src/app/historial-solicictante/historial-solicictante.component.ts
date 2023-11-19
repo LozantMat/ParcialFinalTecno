@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComponentsService } from 'src/services/components.service';
@@ -8,7 +8,9 @@ import { ComponentsService } from 'src/services/components.service';
   templateUrl: './historial-solicictante.component.html',
   styleUrls: ['./historial-solicictante.component.css']
 })
-export class HistorialSolicictanteComponent {
+export class HistorialSolicictanteComponent implements OnInit{
+
+  esDeCredito: boolean=false
       
      nivelSisben = new FormControl();
      ocupacion = new FormControl();
@@ -37,4 +39,9 @@ export class HistorialSolicictanteComponent {
         patrimonio: ['', Validators.required],
        });
      }
+     ngOnInit() {
+      this.componentsService.esDeCredito$.subscribe(esCredito => {
+        this.esDeCredito = esCredito;
+      });
+}
 }

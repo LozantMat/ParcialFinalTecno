@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { ComponentsService } from 'src/services/components.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { ComponentsService } from 'src/services/components.service';
   styleUrls: ['./tipo-cuenta.component.css']
 })
 export class TipoCuentaComponent {
+  @Output() tipoDeCuentaCambiada = new EventEmitter<String>();
   //Decalracion variables de clase
   tipoCuenta = new FormControl();
   responsabilidadPersona = new FormControl();
@@ -20,6 +22,8 @@ export class TipoCuentaComponent {
   docFactura = new FormControl();
   duracion = new FormControl();
   depositoIncial = new FormControl();
+
+  esDeCredito: boolean=false;
 
   myForm: FormGroup;
   constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
@@ -35,6 +39,10 @@ export class TipoCuentaComponent {
       duracion: ['', Validators.required],
       depositoInicial: ['', Validators.required],
     });
+    this.myForm.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+      // Llamar a onSubmit cuando haya cambios en el formulario
+      this.onSubmit();
+    });
   }
 
   showInputText: boolean = false;
@@ -47,6 +55,22 @@ export class TipoCuentaComponent {
     } else {
       this.showInputText = false;
     }
+  }
+
+  tipoSeleccionado() {
+    // Llama al servicio para actualizar el estado
+    this.actualizarTipo();
+    this.tipoDeCuentaCambiada.emit(this.tipoCuenta.value);
+  }
+  actualizarTipo() {
+    const esDeCredito = this.esCredito(); // Implementa la lógica de acuerdo a tu necesidad
+    this.componentsService.actualizarTipoDeCuenta(esDeCredito);
+  }
+  private esCredito(): boolean {
+    if(this.tipoCuenta.value==="cuentaDeCredito"){
+      return true;
+    }
+    return false
   }
 
   manejarDocumento(event: Event) {//metodo que confirma que se subio un archivo a selector de archivos (para el documento de identidad)

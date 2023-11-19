@@ -7,35 +7,35 @@
 
 <body>
     <h3>Datos Personales</h3>
-
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <div class="campoIngreso">
         <p class="prompt">Indique su nombre:</p>
-        <input type="text" [formControl]="nombre">
+        <input type="text" formControlName="nombre">
     </div>
 
     <div class="campoIngreso">
         <p class="prompt">Indique su apellido:</p>
-        <input type="text" [formControl]="apellido">
+        <input type="text" formControlName="apellido">
     </div>
 
     <div class="campoIngreso">
         <p class="prompt">Indique su correo electrónico:</p>
-        <input type="email" [formControl]="correo">
+        <input type="email" formControlName="correo">
     </div>
 
     <div class="campoIngreso">
         <p class="prompt">Indique su teléfono:</p>
-        <input type="number" [formControl]="telefono">
+        <input type="number" formControlName="telefono">
     </div>
 
     <div class="campoIngreso">
         <p class="prompt">Indique su dirección de residencia:</p>
-        <input type="text" [formControl]="direccion">
+        <input type="text" formControlName="direccion">
     </div>
 
     <div class="campoIngreso">
         <p>Seleccione el estrato de su residencia:</p>
-        <select name="estrato" class="tipoDoc" [formControl]="estrato">
+        <select name="estrato" class="tipoDoc" formControlName="estrato">
             <option value="estrato1">1</option>
             <option value="estrato2">2</option>
             <option value="estrato3">3</option>
@@ -47,33 +47,34 @@
 
     <div class="campoIngreso">
         <p class="prompt">País de residencia:</p>
-        <input type="text" [formControl]="pais">
+        <input type="text" formControlName="pais">
     </div>
 
     <div class="campoIngreso">
         <p class="prompt">Indique su fecha de nacimiento:</p>
-        <input type="date" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada()">
+        <input type="date" formControlName="fechaNacimiento" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada()">
     </div>
 
     <div class="campoIngreso">
         <p>Indique su documento de identificación:</p>
-        <select name="tipoDocumento" class="tipoDoc" [formControl]="tipoDocumento">
+        <select name="tipoDocumento" class="tipoDoc" formControlName="tipoDocumento">
             <option value="CC">C.C</option>
             <option value="TI">T.I</option>
             <option value="CI">CI</option>
         </select>
-        <input type="number" [formControl]="numeroIdentificacion">
+        <input type="number" formControlName="numeroIdentificacion">
     </div>
 
     <div class="campoIngreso">
         <p>Indique su estado civil:</p>
-        <select name="estadoCivil" class="tipoDoc" [formControl]="estadoCivil">
+        <select name="estadoCivil" class="tipoDoc" formControlName="estadoCivil">
             <option value="soltero">Soltero(a)</option>
             <option value="casado">Casado(a)</option>
             <option value="divorciado">Divorciado(a)</option>
             <option value="viudo">Viudo(a)</option>
         </select>
     </div>
+</form>
 
 </body>
 
