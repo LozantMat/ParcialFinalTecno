@@ -49,7 +49,7 @@
 
         <div class="campoIngreso">
             <p class="prompt" >Indique su fecha de nacimiento:</p>
-            <input type="date" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada()">
+            <input type="date" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada()" (input)="validarFecha($event)">
         </div>
 
         <div class="campoIngreso">

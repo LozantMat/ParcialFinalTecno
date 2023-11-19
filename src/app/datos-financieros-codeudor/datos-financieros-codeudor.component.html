@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+   
+        <h3>Historial Crediticio del Codeudor</h3>
+
+        <div class="campoIngreso">
+            <p>Seleccione su nivel de Sisben</p>
+            <select name="sisben" class="tipoDoc" [formControl]="nivelSisbenCodeudor">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Indique la ocupaci&oacute;n del codeudor:</p>
+            <input type="text" [formControl]="ocupacionCodeudor">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt"> Nombre de la empresa para la que trabaja el codeudor:</p>
+            <input [formControl]="nombreEmpresaCodeudor" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Direcci&oacute;n de la empresa del codeudor:</p>
+            <input type="text" [formControl]="direccionCodeudor">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >N&uacute;mero telef&oacute;nico de la empresa del codeudor:</p>
+            <input [formControl]="telefonoCodeudor" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el NIT de la empresa:</p>
+            <input [formControl]="nitCodeudor" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el cargo que desempeña del codeudor:</p>
+            <input [formControl]="cargoCodeudor" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique los ingresos mensuales del codeudor:</p>
+            <input [formControl]="ingresosCodeudor" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique los egresos mensuales del codeudor:</p>
+            <input [formControl]="egresosCodeudor" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el patrimonio neto del codeudor:</p>
+            <input [formControl]="patrimonioCodeudor" type="number">
+        </div>
+
+    </body>
+</html>

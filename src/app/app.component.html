@@ -15,6 +15,9 @@
               <div class="contenedorFormulario"><app-tipo-cuenta (datosEnviados)="recibirDatosTipoCuenta($event)"></app-tipo-cuenta></div>
             <div class="contenedorFormulario"><app-datos-personales (datosEnviados)="recibirDatosPersonales($event)"></app-datos-personales></div>
             <div class="contenedorFormulario"><app-datos-acudiente (datosEnviados)="recibirDatosAcudiente($event)" ></app-datos-acudiente></div>
+            <div class="contenedorFormulario"><app-historial-solicictante></app-historial-solicictante></div>
+            <div class="contenedorFormulario"><app-datos-financieros-codeudor></app-datos-financieros-codeudor></div>
+            <div class="contenedorFormulario"><app-datos-personales-codeudor></app-datos-personales-codeudor></div>
               <button (click)="toggleFormulario()">Enviar</button>
             </div>
           </div>
