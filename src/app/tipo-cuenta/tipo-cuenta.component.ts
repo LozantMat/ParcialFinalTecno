@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -21,7 +21,6 @@ export class TipoCuentaComponent {
   depositoIncial = new FormControl();
 
   myForm: FormGroup;
-
   constructor(private fb: FormBuilder) {
     this.myForm = this.fb.group({
       tipoCuenta: ['', Validators.required],
@@ -84,8 +83,12 @@ export class TipoCuentaComponent {
       //condicion para decir que existe archivo
     }
   }
+  @Output() datosEnviados = new EventEmitter<any>();
+  // Resto del código...
 
-
+  enviarDatos() {
+    if (this.myForm.valid) {
+      const datos = this.myForm.value;
+      this.datosEnviados.emit({ tipoCuenta: datos });
+}}
 }
-
-

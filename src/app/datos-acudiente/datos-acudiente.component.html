@@ -4,7 +4,8 @@
 
     </head>
     <body>
-        <h3>Datos Personales</h3>
+        <div *ngIf="esMenorDeEdad" class="formulario-acudiente">
+        <h3>Datos del Acudiente</h3>
         <div class="campoIngreso">
             <p class="prompt">Indique el nombre del acudiente:</p>
             <input type="text" [formControl]="nombreAcudiente">
@@ -17,7 +18,7 @@
 
         <div class="campoIngreso">
             <p class="prompt" >Indique el correo del acudiente:</p>
-            <input [formControl]="correoAcudiente" type="emal">
+            <input [formControl]="correoAcudiente" type="email">
         </div>
 
         <div class="campoIngreso">
@@ -76,6 +77,6 @@
             <p class="prompt">Indique su parentesco con el acudeinte:</p>
             <input type="text" [formControl]="parentescoAcudiente">
         </div>
-
+</div>
     </body>
 </html>

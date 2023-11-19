@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ComponentsService } from 'src/services/components.service';
 @Component({
   selector: 'app-datos-personales',
   templateUrl: './datos-personales.component.html',
@@ -9,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class DatosPersonalesComponent {
 
+  @Output() fechaNacimientoCambiada = new EventEmitter<string>();
     //Decalracion variables de clase
     nombre = new FormControl();
     apellido = new FormControl();
@@ -24,7 +26,7 @@ export class DatosPersonalesComponent {
   
     myForm: FormGroup;
   
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
       this.myForm = this.fb.group({
         nombre: ['', Validators.required],
         apellido: ['', Validators.required],
@@ -40,11 +42,35 @@ export class DatosPersonalesComponent {
       });
     }
 
-    fechaNacimientoSeleccionada(event: Event) {//Eventoo para poder verificar la edad de la persona
-        //emitir eventos
+    fechaNacimientoSeleccionada() {
+      // Llama al servicio para actualizar el estado
+      this.actualizarEstadoEdad();
+      this.fechaNacimientoCambiada.emit(this.fechaNacimiento.value);
+    }
+
+    actualizarEstadoEdad() {
+      const esMenorDeEdad = this.esMenorDeEdad(); // Implementa la lógica de acuerdo a tu necesidad
+      this.componentsService.actualizarEstadoEdad(esMenorDeEdad);
     }
   
+    private esMenorDeEdad(): boolean {
+      const fechaNacimiento = this.fechaNacimiento.value;
+      const hoy = new Date();
+      const fechaNacimientoDate = new Date(fechaNacimiento);
   
+      const edad = hoy.getFullYear() - fechaNacimientoDate.getFullYear();
+  
+    return edad < 18;
+      
   }
+  @Output() datosEnviados = new EventEmitter<any>();
+
+  enviarDatos() {
+    if (this.myForm.valid) {
+      const datos = this.myForm.value;
+      this.datosEnviados.emit({ datosPersonales: datos });
+  }
+}
+}
   
   

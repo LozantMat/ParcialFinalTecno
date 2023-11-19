@@ -10,9 +10,20 @@
             </div>
     </header>
         <main>
-                <div class="contenedorFormulario"> <app-tipo-cuenta></app-tipo-cuenta></div>
-                <div class="contenedorFormulario"><app-datos-personales></app-datos-personales> </div>
-                <div class="contenedorFormulario"><app-datos-acudiente></app-datos-acudiente> </div>
+          <div *ngIf="mostrarFormularioConfirmacion===false">
+            <div *ngIf="!mostrarFormularioConfirmacion">
+              <div class="contenedorFormulario"><app-tipo-cuenta (datosEnviados)="recibirDatosTipoCuenta($event)"></app-tipo-cuenta></div>
+            <div class="contenedorFormulario"><app-datos-personales (datosEnviados)="recibirDatosPersonales($event)"></app-datos-personales></div>
+            <div class="contenedorFormulario"><app-datos-acudiente (datosEnviados)="recibirDatosAcudiente($event)" ></app-datos-acudiente></div>
+              <button (click)="toggleFormulario()">Enviar</button>
+            </div>
+          </div>
+
+          <div *ngIf="mostrarFormularioConfirmacion">
+            <app-confirmacion-ahorros [datosTipoCuenta]="datosTipoCuenta" [datosPersonales]="datosPersonales" [datosAcudiente]="datosAcudiente"></app-confirmacion-ahorros>
+          </div>
+
+          
         </main>
   </body>
 </html>

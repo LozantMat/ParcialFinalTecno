@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ComponentsService } from 'src/services/components.service';
 
 @Component({
   selector: 'app-datos-acudiente',
   templateUrl: './datos-acudiente.component.html',
   styleUrls: ['./datos-acudiente.component.css']
 })
-export class DatosAcudienteComponent {
+export class DatosAcudienteComponent implements OnInit{
 
       //Decalracion variables de clase
+      esMenorDeEdad: boolean = false;
+      
       nombreAcudiente = new FormControl();
       apellidoAcudiente = new FormControl();
       telefonoAcudiente  = new FormControl();
@@ -25,7 +28,7 @@ export class DatosAcudienteComponent {
 
       myForm: FormGroup;
     
-      constructor(private fb: FormBuilder) {
+      constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
         this.myForm = this.fb.group({
           nombre: ['', Validators.required],
           apellido: ['', Validators.required],
@@ -39,12 +42,23 @@ export class DatosAcudienteComponent {
           estadoCivil: ['', Validators.required],
           numeroIdentificacion: ['', Validators.required],
           parentescoAcudiente: ['', Validators.required],
+          
         });
       }
   
       fechaNacimientoSeleccionada(event: Event) {//Eventoo para poder verificar la edad de la persona
           //emitir eventos
       }
+      ngOnInit() {
+        this.componentsService.esMenorDeEdad$.subscribe(esMenor => {
+          this.esMenorDeEdad = esMenor;
+        });
     
-    
-}
+      }
+      @Output() datosEnviados = new EventEmitter<any>();
+
+  enviarDatos() {
+    if (this.myForm.valid) {
+      const datos = this.myForm.value;
+      this.datosEnviados.emit({ datosPersonales: datos });
+    }}}

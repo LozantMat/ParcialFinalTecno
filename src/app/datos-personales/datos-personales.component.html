@@ -17,7 +17,7 @@
 
         <div class="campoIngreso">
             <p class="prompt" >Indique el su correo electroico:</p>
-            <input [formControl]="apellido" type="emal">
+            <input [formControl]="apellido" type="email">
         </div>
 
         <div class="campoIngreso">
@@ -49,7 +49,7 @@
 
         <div class="campoIngreso">
             <p class="prompt" >Indique su fecha de nacimiento:</p>
-            <input type="date" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada($event)">
+            <input type="date" [formControl]="fechaNacimiento" (change)="fechaNacimientoSeleccionada()">
         </div>
 
         <div class="campoIngreso">
