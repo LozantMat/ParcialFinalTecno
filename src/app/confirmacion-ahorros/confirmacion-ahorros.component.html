@@ -4,18 +4,11 @@
 
     </head>
     <body>
-        <div>
-            <h4>Datos Tipo de Cuenta:</h4>
-            <p>{{ datosTipoCuenta.motivo}}</p>
-          </div>
-          <div>
-            <h4>Datos Personales:</h4>
-            <p>{{ datosPersonales.nombre}}</p>
-          </div>
-          <div *ngIf="datosAcudiente">
-            <h4>Datos del Acudiente:</h4>
-            <p>{{ datosAcudiente.nombre}}</p>
-          </div>
+      <div>
+        <h3>Datos de Confirmación</h3>
+        {{ datosConfirmacion | json }}
+      </div>
+          
           
     </body>
 </html>

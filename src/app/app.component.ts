@@ -1,5 +1,5 @@
 // componente-principal.component.ts
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ComponentsService } from 'src/services/components.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class AppComponent {
 
   
 
-  constructor(private componentsService: ComponentsService) {}
+  constructor(private componentsService: ComponentsService, private cdr:ChangeDetectorRef) {}
 
   recibirDatosTipoCuenta(datos: any) {
     this.datosTipoCuenta = datos;
@@ -32,12 +32,16 @@ export class AppComponent {
   recibirDatosAcudiente(datos: any) {
     this.datosAcudiente = datos;
   }
-
+  datosConfirmacion: any;
   toggleFormulario() {
     this.mostrarFormularioConfirmacion = !this.mostrarFormularioConfirmacion;
-    this.componentsService.guardarDatosConfirmacion(this.datosTipoCuenta, this.datosPersonales, this.datosAcudiente);
-
+    this.datosConfirmacion = {
+      datosTipoCuenta: this.datosTipoCuenta,
+      datosPersonales: this.datosPersonales,
+      datosAcudiente: this.datosAcudiente
+      
   }
-
+  console.log('datosConfirmacion:', this.datosConfirmacion);
+  this.cdr.detectChanges
 }
-
+}

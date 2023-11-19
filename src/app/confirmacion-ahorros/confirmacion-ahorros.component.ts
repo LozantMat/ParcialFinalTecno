@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ComponentsService } from 'src/services/components.service';
 
@@ -7,20 +7,20 @@ import { ComponentsService } from 'src/services/components.service';
   templateUrl: './confirmacion-ahorros.component.html',
   styleUrls: ['./confirmacion-ahorros.component.css']
 })
-export class ConfirmacionAhorrosComponent {
-  @Input() datosTipoCuenta: any;
-  @Input() datosPersonales: any;
-  @Input() datosAcudiente: any;
+export class ConfirmacionAhorrosComponent implements OnInit{
+  @Input() datosConfirmacion: any;
 
+  constructor(private componentsService: ComponentsService, private cdr: ChangeDetectorRef) {
 
-  datosConfirmacion: any;
-  constructor(private componentsService: ComponentsService) {
-    this.componentsService.datosConfirmacion$.subscribe(
-      data => {
-        console.log('Datos de Confirmación recibidos:', data);
-        this.datosConfirmacion = data;
-      }
-    );
+}
+ngOnInit() {
+  this.componentsService.datosConfirmacion$.subscribe(
+    data => {
+      console.log('Datos de Confirmación recibidos:', data);
+      this.datosConfirmacion = data;
+      this.cdr.detectChanges
+    }
+  );
 }
 }
 
