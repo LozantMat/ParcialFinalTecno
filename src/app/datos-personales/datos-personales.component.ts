@@ -27,7 +27,7 @@ export class DatosPersonalesComponent {
       direccion: ['', Validators.required],
       pais: ['', Validators.required],
       estrato: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
+      fechaNacimiento: [''],
       tipoDocumento: ['', Validators.required],
       estadoCivil: ['', Validators.required],
       numeroIdentificacion: ['', Validators.required],

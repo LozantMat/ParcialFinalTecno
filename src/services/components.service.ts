@@ -35,4 +35,12 @@ private formValuesSource = new BehaviorSubject<any>(null);
   setShowDetails(value: boolean) {
     this.showDetailsSubject.next(value);
   }
+  private formValiditySource = new BehaviorSubject<boolean>(false);
+  formValidity$ = this.formValiditySource.asObservable();
+
+  // Method to update the formValiditySource
+  updateFormValidity(isValid: boolean) {
+    this.formValiditySource.next(isValid);
+  }
+  
 }

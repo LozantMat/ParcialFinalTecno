@@ -19,14 +19,18 @@ background-color: #fbdcc5;
 }
 
 .campoIngreso{
-border: 0.2px solid grey;
-border-radius: 20px;
-width: 90%;
-padding-top: -5px;
-margin-left: 5%;
-padding-left: 20px;
-margin-bottom: 10px;
-transition: border 0.5s, box-shadow 0.5s;
+    border: 0.2px solid grey;
+    border-radius: 20px;
+    width: 38%;
+    padding-top: -5px;
+    padding-bottom: 3px;
+    margin-left: 3%;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    transition: border 0.5s, box-shadow 0.5s;
 }
 
 .campoIngreso:hover{
@@ -48,4 +52,9 @@ color: grey;
 .tipoDoc{
     display: inline-block;
     width: 60px;
+}
+
+.estadoCivil{
+    display: inline-block;
+    width: 90px;
 }

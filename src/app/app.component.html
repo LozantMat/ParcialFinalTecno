@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Add necessary head content here -->
+    
   </head>
   <body>
     <header>
       <div class="navbar">
-        <h1>LI Bank forms</h1>
+        <h1>LI Bank</h1>
       </div>
     </header>
         <main>
-          <div *ngIf="mostrarFormularioConfirmacion===false">
             <div *ngIf="!mostrarFormularioConfirmacion">
-              <div class="contenedorFormulario"><app-tipo-cuenta></app-tipo-cuenta></div>
-            <div class="contenedorFormulario"><app-datos-personales></app-datos-personales></div>
-            <div class="contenedorFormulario"><app-datos-acudiente ></app-datos-acudiente></div>
-              <button (click)="toggleFormulario()">Enviar</button>
-              <div *ngIf="showDetails">
-                <div  class="contenedor formulario"><app-datos-financieros-codeudor></app-datos-financieros-codeudor></div>
-                <div  class="contenedor formulario"><app-datos-personales-codeudor></app-datos-personales-codeudor></div>
+              <div class="instrucciones"><p class="instruccion">Bienvenido a tu proceso de creacion de cuenta en LI Bank!</p>
+                <p></p>
+                <p class="instruccion">Empecemos con este pequeño formulario</p>
               </div>
+              <div class="contenedorFormulario"><app-tipo-cuenta></app-tipo-cuenta></div>
+              <div class="contenedorFormulario"><app-datos-personales></app-datos-personales></div>
+              <div class="contenedorFormulario"><app-datos-acudiente ></app-datos-acudiente></div>
+              <div *ngIf="showDetails">
+                <div  class="contenedorFormulario"><app-datos-personales-codeudor></app-datos-personales-codeudor></div>
+                <div  class="contenedorFormulario"><app-datos-financieros-codeudor></app-datos-financieros-codeudor></div>
+              </div>
+              <div class="instrucciones"><button (click)="toggleFormulario()">Enviar</button></div>
             </div>
-          </div>
 
       <div *ngIf="mostrarFormularioConfirmacion">
         <app-confirmacion-ahorros></app-confirmacion-ahorros>
       </div>
+
+      <ul class="background">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+     </ul>
     </main>
   </body>
 </html>
