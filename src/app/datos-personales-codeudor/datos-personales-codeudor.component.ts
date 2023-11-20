@@ -10,6 +10,7 @@ import { ComponentsService } from 'src/services/components.service';
 })
 export class DatosPersonalesCodeudorComponent {
 
+  esDeCredito: boolean=false
 
   nombreCodeudor = new FormControl();
   apellidoCodeudor = new FormControl();
@@ -43,4 +44,9 @@ export class DatosPersonalesCodeudorComponent {
       
     });
   }
+  ngOnInit() {
+    this.componentsService.esDeCredito$.subscribe(esCredito => {
+      this.esDeCredito = esCredito;
+    });
+}
 }

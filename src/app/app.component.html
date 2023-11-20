@@ -10,18 +10,20 @@
       </div>
     </header>
         <main>
-          <div class="instrucciones"><p class="instruccion">Bienvenido a tu proceso de creacion de cuenta en LI Bank!</p>
-            <p></p>
-            <p class="instruccion">Empecemos con este pequeño formulario</p>
-          </div>
-          <div *ngIf="mostrarFormularioConfirmacion===false">
             <div *ngIf="!mostrarFormularioConfirmacion">
+              <div class="instrucciones"><p class="instruccion">Bienvenido a tu proceso de creacion de cuenta en LI Bank!</p>
+                <p></p>
+                <p class="instruccion">Empecemos con este pequeño formulario</p>
+              </div>
               <div class="contenedorFormulario"><app-tipo-cuenta></app-tipo-cuenta></div>
-            <div class="contenedorFormulario"><app-datos-personales></app-datos-personales></div>
-            <div class="contenedorFormulario"><app-datos-acudiente ></app-datos-acudiente></div>
-            <div class="instrucciones"><button class="instruccion" (click)="toggleFormulario()">Enviar</button></div>
+              <div class="contenedorFormulario"><app-datos-personales></app-datos-personales></div>
+              <div class="contenedorFormulario"><app-datos-acudiente ></app-datos-acudiente></div>
+              <div *ngIf="showDetails">
+                <div  class="contenedorFormulario"><app-datos-personales-codeudor></app-datos-personales-codeudor></div>
+                <div  class="contenedorFormulario"><app-datos-financieros-codeudor></app-datos-financieros-codeudor></div>
+              </div>
+              <div class="instrucciones"><button (click)="toggleFormulario()">Enviar</button></div>
             </div>
-          </div>
 
       <div *ngIf="mostrarFormularioConfirmacion">
         <app-confirmacion-ahorros></app-confirmacion-ahorros>

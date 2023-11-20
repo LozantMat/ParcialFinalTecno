@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { ComponentsService } from 'src/services/components.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { ComponentsService } from 'src/services/components.service';
   styleUrls: ['./tipo-cuenta.component.css']
 })
 export class TipoCuentaComponent {
+  @Output() tipoDeCuentaCambiada = new EventEmitter<String>();
   //Decalracion variables de clase
+  tipoCuenta: string = 'cuentaDeAhorros';
+
+  esDeCredito: boolean=false;
 
   myForm: FormGroup;
   constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
@@ -25,6 +30,10 @@ export class TipoCuentaComponent {
       duracion: ['', Validators.required],
       depositoInicial: ['', Validators.required],
     });
+    this.myForm.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+      // Llamar a onSubmit cuando haya cambios en el formulario
+      this.onSubmit();
+    });
   }
 
   showInputText: boolean = false;
@@ -38,6 +47,8 @@ export class TipoCuentaComponent {
       this.showInputText = false;
     }
   }
+
+ 
 
   manejarDocumento(event: Event) {//metodo que confirma que se subio un archivo a selector de archivos (para el documento de identidad)
     const input = event.target as HTMLInputElement;
@@ -77,12 +88,16 @@ export class TipoCuentaComponent {
   @Output() datosEnviados = new EventEmitter<any>();
 
   // Inside the onSubmit method, emit the form data to the parent component
-  onRadioChange() {
-   const tipoCuentaControl = this.myForm.get('tipoCuenta');
-  if (tipoCuentaControl) {
-    const selectedTipoCuenta = tipoCuentaControl.value;
-    console.log('Selected Tipo de Cuenta:', selectedTipoCuenta);
-    console.log('Form State:', this.myForm.value);
-  }
-  }
+  onSubmit() {
+    this.componentsService.updateFormValues({tipoDeCuenta:this.myForm.value});
+      const formValues = this.myForm.value;
+      console.log(formValues);
+      // Do something with the form values
+    
+    
+    }
+    onRadioChange(value: string) {
+      this.tipoCuenta = value;
+      this.componentsService.setShowDetails(value === 'cuentaDeCredito');
+    }
 }

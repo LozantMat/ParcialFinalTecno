@@ -42,7 +42,12 @@ main {
     transition: border 0.5s, box-shadow 0.5s;
     vertical-align: top;
     background-color: white;
+    padding: 0;
 }
+
+.contenedorFormulario:empty {
+    display: none;
+  }
 
 .instrucciones{
     margin-top: 20px;
@@ -63,10 +68,18 @@ main {
     text-align: center;
 }
 
-input[type=button]{
-   margin-left: 30%;
-   color: #067a00;
-   font-size: 30px;
+button{
+   margin-left: 5%;
+   width: 90%;
+   color: #034100;
+   font-size: 20px;
+   text-align: center;
+   background-color: #fff8f3;
+   border-radius: 10px;
+   transition: border 0.5s, box-shadow 0.5s;
+}
+button:hover{
+    box-shadow: 1px 1px 3px #000000;;
 }
 
 .contenedorFormulario:hover{

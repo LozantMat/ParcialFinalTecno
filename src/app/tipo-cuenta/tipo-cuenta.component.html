@@ -5,76 +5,79 @@
   </head>
   <body>
     <h3>Motivo del Tramite</h3>
-    <form [formGroup]="myForm">
-      <div class="campoIngreso">
-        <h4>Tipo de cuenta:</h4>
-          <p class="prompt">Ingrese su Nit:</p>
-          <label>
-            <input type="radio" name="tipoCuenta" formControlName="tipoCuenta" value="cuentaDeAhorros" (change)="onRadioChange()">
-            Cuenta de Ahorros
-          </label>
-          <br>
-          <label> 
-            <input type="radio" name="tipoCuenta" formControlName="tipoCuenta" value="cuentaDeCredito" (change)="onRadioChange()">
-            Cuenta de Crédito
-          </label>
-      </div>
-
-      <div class="campoIngreso">
-        <h4>Responsabilidad</h4>
-        <form>
-          <p class="prompt">Seleccione el tipo de responsabilidad:</p>
-          <label>
-            <input type="radio" name="personType" formControlName="responsabilidadPersona" value="personaJuridica" (change)="toggleInputField($event)">
-            Persona Jurídica
-          </label>
-          <br>
-          <label>
-            <input type="radio" name="personType" formControlName="responsabilidadPersona" value="personaNatural" (change)="toggleInputField($event)">
-            Persona Natural
-          </label>
-        </form>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="campoIngreso">
+      <h4>Tipo de cuenta:</h4>
+      
+        <p class="prompt">Ingrese su Nit:</p>
         
-        <div id="inputText" *ngIf="showInputText">
-          <p class="prompt">Ingrese su Nit:</p>
-          <input type="text" formControlName="nitOpcional">
-        </div>
-      </div>
+        <label>
+          <input type="radio" name="tipoCuenta" formControlName="tipoCuenta" value="cuentaDeAhorros" (change)="onRadioChange('cuentaDeAhorros')" [checked]="tipoCuenta === 'cuentaDeAhorros'">
+          Cuenta de Ahorros
+        </label>
+        <br>
+        <label> 
+          <input type="radio" name="tipoCuenta" formControlName="tipoCuenta" value="cuentaDeCredito" (change)="onRadioChange('cuentaDeCredito')" [checked]="tipoCuenta === 'cuentaDeCredito'">
+          Cuenta de Crédito
+        </label>
+    
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Indique el motivo para crear la cuenta:</p>
-        <input type="text" formControlName="motivo">
+    <div class="campoIngreso">
+      <h4>Responsabilidad</h4>
+      <form>
+        <p class="prompt">Seleccione el tipo de responsabilidad:</p>
+        <label>
+          <input type="radio" name="responsabilidadPersona" formControlName="responsabilidadPersona" value="personaJuridica" (change)="toggleInputField($event)">
+          Persona Jurídica
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="responsabilidadPersona"formControlName="responsabilidadPersona" value="personaNatural" (change)="toggleInputField($event)">
+          Persona Natural
+        </label>
+      </form>
+      
+      <div id="inputText" *ngIf="showInputText">
+        <p class="prompt">Ingrese su Nit:</p>
+        <input type="text" formControlName="nitOpcional">
       </div>
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Adjunte una fotocopia de su documento de identidad</p>
-        <input type="file" formControlName="docIdentidad" (change)="manejarDocumento($event)">
-      </div>
+    <div class="campoIngreso">
+      <p class="prompt">Indique el motivo para crear la cuenta:</p>
+      <input type="text" formControlName="motivo">
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Adjunte una foto suya (que muestre su cara)</p>
-        <input type="file" formControlName="docImagen" (change)="manejarImagen($event)">
-      </div>
+    <div class="campoIngreso">
+      <p class="prompt">Adjunte una fotocopia de su documento de identidad</p>
+      <input type="file" formControlName="docIdentidad" (change)="manejarDocumento($event)">
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Adjunte su firma virtual:</p>
-        <input type="file" formControlName="docFirma" (change)="manejarFirma($event)">
-      </div>
+    <div class="campoIngreso">
+      <p class="prompt">Adjunte una foto suya (que muestre su cara)</p>
+      <input type="file" formControlName="docImagen" (change)="manejarImagen($event)">
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Adjunte una factura de servicios públicos de su vivienda actual:</p>
-        <input type="file" formControlName="docFactura" (change)="manejarFactura($event)">
-      </div>
+    <div class="campoIngreso">
+      <p class="prompt">Adjunte su firma virtual:</p>
+      <input type="file" formControlName="docFirma" (change)="manejarFirma($event)">
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Indique la duración deseada de la cuenta:</p>
-        <input type="text" formControlName="duracion">
-      </div>
+    <div class="campoIngreso">
+      <p class="prompt">Adjunte una factura de servicios públicos de su vivienda actual:</p>
+      <input type="file" formControlName="docFactura" (change)="manejarFactura($event)">
+    </div>
 
-      <div class="campoIngreso">
-        <p class="prompt">Ingrese el valor del depósito inicial que hará a la cuenta:</p>
-        <input type="text" formControlName="depositoInicial">
-      </div>
+    <div class="campoIngreso">
+      <p class="prompt">Indique la duración deseada de la cuenta:</p>
+      <input type="text" formControlName="duracion">
+    </div>
+
+    <div class="campoIngreso">
+      <p class="prompt">Ingrese el valor del depósito inicial que hará a la cuenta:</p>
+      <input type="text" formControlName="depositoIncial">
+    </div>
   </form>
   </body>
 </html>
