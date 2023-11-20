@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h3>Datos del Codeudor</h3>
+        <div class="campoIngreso">
+            <p class="prompt">Indique el nombre del codeudor:</p>
+            <input type="text" [formControl]="nombreCodeudor">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el apellido del codeudor:</p>
+            <input [formControl]="apellidoCodeudor" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el correo del codeudor:</p>
+            <input [formControl]="correoCodeudor" type="email">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique el telefoono del codeudor:</p>
+            <input [formControl]="telefonoCodeudor" type="number">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique la direccion del codeudor:</p>
+            <input [formControl]="direccionCodeudor" type="text">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Seleccione el estrato del codeudor:</p>
+            <select name="estrato" class="tipoDoc"  [formControl]="estratoCodeudor">
+                <option value="estrato1"> 1</option>
+                <option value="estrato2"> 2</option>
+                <option value="estrato3"> 3</option>
+                <option value="estrato4"> 4</option>
+                <option value="estrato5"> 5</option>
+                <option value="estrato6"> 6</option>
+            </select>
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt">Pa&iacute;s de residencia del codeudor:</p>
+            <input type="text" [formControl]="paisCodeudor">
+        </div>
+
+        <div class="campoIngreso">
+            <p class="prompt" >Indique la fecha de nacimiento de su codeudor:</p>
+            <input type="date" [formControl]="fechaNacimientoCodeudor">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Indique el tipo de documento de su codeudor:</p>
+            <select name="estrato" class="tipoDoc" [formControl]="tipoDocumentoCodeudor">
+                <option value="CC"> C.C</option>
+                <option value="TI"> T.I</option>
+                <option value="CI"> CI</option>
+            </select>
+            <input type="number" [formControl]="numeroIdentificacionCodeudor">
+        </div>
+
+        <div class="campoIngreso">
+            <p>Indique el estado civil del codeudor:</p>
+            <select name="estrato" class="tipoDoc" [formControl]="estadoCivilCodeudor">
+                <option value="soltero">Solero(a)</option>
+                <option value="casado">Casado(a)</option>
+                <option value="divorciado">Divorciado(a)</option>
+                <option value="viudo">Viudo(a)</option>
+            </select>
+        </div>
+
+    </body>
+</html>

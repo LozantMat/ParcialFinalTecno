@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
+import { ComponentsService } from 'src/services/components.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tipo-cuenta',
@@ -8,32 +11,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./tipo-cuenta.component.css']
 })
 export class TipoCuentaComponent {
+  @Output() tipoDeCuentaCambiada = new EventEmitter<String>();
   //Decalracion variables de clase
-  tipoCuenta = new FormControl();
-  responsabilidadPersona = new FormControl();
-  nitOpcional = new FormControl();
-  motivo = new FormControl();
-  docIdentidad = new FormControl();
-  docImagen = new FormControl();
-  docFirma = new FormControl();
-  docFactura = new FormControl();
-  duracion = new FormControl();
-  depositoIncial = new FormControl();
+  tipoCuenta: string = 'cuentaDeAhorros';
+  esMenorDeEdad: boolean=false;
+  esDeCredito: boolean=false;
 
   myForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
     this.myForm = this.fb.group({
       tipoCuenta: ['', Validators.required],
       responsabilidadPersona: ['', Validators.required],
-      nitOpcional: ['', Validators.required],
+      nitOpcional: [''],
       motivo: ['', Validators.required],
-      docIdentidad: ['', Validators.required],
-      docImagen: ['', Validators.required],
-      docFirma: ['', Validators.required],
+      docIdentidad: [''],
+      docImagen: [''],
+      docFirma: [''],
       docFactura: ['', Validators.required],
       duracion: ['', Validators.required],
       depositoInicial: ['', Validators.required],
+    });
+    this.myForm.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+      // Llamar a onSubmit cuando haya cambios en el formulario
+      this.onSubmit();
+    });
+
+    this.componentsService.esMenorDeEdad$.subscribe((esMenorDeEdad) => {
+      this.esMenorDeEdad = esMenorDeEdad;
     });
   }
 
@@ -48,6 +52,8 @@ export class TipoCuentaComponent {
       this.showInputText = false;
     }
   }
+
+ 
 
   manejarDocumento(event: Event) {//metodo que confirma que se subio un archivo a selector de archivos (para el documento de identidad)
     const input = event.target as HTMLInputElement;
@@ -84,8 +90,40 @@ export class TipoCuentaComponent {
       //condicion para decir que existe archivo
     }
   }
+  @Output() datosEnviados = new EventEmitter<any>();
 
+  // Inside the onSubmit method, emit the form data to the parent component
+  onSubmit() {
+    this.componentsService.updateFormValues({tipoDeCuenta:this.myForm.value});
+      const formValues = this.myForm.value;
+      console.log(formValues);
+      // Do something with the form values
+     // Actualizar el servicio con el tipo de cuenta
+     this.componentsService.updateFormValues({ tipoDeCuenta: this.myForm.value });
 
+     // Actualizar el estado de la cuenta de crédito si es menor de edad
+     if (this.esMenorDeEdad) {
+       // Verificar si seleccionó "Cuenta de Crédito"
+       if (this.myForm.value.tipoCuenta === 'cuentaDeCredito') {
+         // Mostrar la alerta
+         Swal.fire({
+           title: '¡Atención!',
+           text: 'Lo siento, no puedes seleccionar "Cuenta de Crédito" siendo menor de edad.',
+           icon: 'warning',
+           confirmButtonText: 'OK'
+         });
+         // Reiniciar el valor del tipo de cuenta
+         this.myForm.patchValue({ tipoCuenta: '' });
+         return;  // Detener la ejecución para que no continúe con la lógica normal
+       }
+     }
+ 
+     // Continuar con la lógica normal si no es menor de edad o si no seleccionó "Cuenta de Crédito"
+     this.componentsService.actualizarTipoDeCuenta(this.myForm.value.tipoCuenta === 'cuentaDeCredito');
+    
+    }
+    onRadioChange(value: string) {
+      this.tipoCuenta = value;
+      this.componentsService.setShowDetails(value === 'cuentaDeCredito');
+    }
 }
-
-
