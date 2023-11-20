@@ -16,9 +16,9 @@
             <div class="contenedorFormulario"><app-datos-personales></app-datos-personales></div>
             <div class="contenedorFormulario"><app-datos-acudiente ></app-datos-acudiente></div>
               <button (click)="toggleFormulario()">Enviar</button>
-              <div>
-                <div class="contenedor formulario"><app-datos-financieros-codeudor></app-datos-financieros-codeudor></div>
-                <div class="contenedor formulario"><app-datos-personales-codeudor></app-datos-personales-codeudor></div>
+              <div *ngIf="showDetails">
+                <div  class="contenedor formulario"><app-datos-financieros-codeudor></app-datos-financieros-codeudor></div>
+                <div  class="contenedor formulario"><app-datos-personales-codeudor></app-datos-personales-codeudor></div>
               </div>
             </div>
           </div>

@@ -12,16 +12,7 @@ import { ComponentsService } from 'src/services/components.service';
 export class TipoCuentaComponent {
   @Output() tipoDeCuentaCambiada = new EventEmitter<String>();
   //Decalracion variables de clase
-  tipoCuenta = new FormControl();
-  responsabilidadPersona = new FormControl();
-  nitOpcional = new FormControl();
-  motivo = new FormControl();
-  docIdentidad = new FormControl();
-  docImagen = new FormControl();
-  docFirma = new FormControl();
-  docFactura = new FormControl();
-  duracion = new FormControl();
-  depositoIncial = new FormControl();
+  tipoCuenta: string = 'cuentaDeAhorros';
 
   esDeCredito: boolean=false;
 
@@ -57,21 +48,7 @@ export class TipoCuentaComponent {
     }
   }
 
-  tipoSeleccionado() {
-    // Llama al servicio para actualizar el estado
-    this.actualizarTipo();
-    this.tipoDeCuentaCambiada.emit(this.tipoCuenta.value);
-  }
-  actualizarTipo() {
-    const esDeCredito = this.esCredito(); // Implementa la lógica de acuerdo a tu necesidad
-    this.componentsService.actualizarTipoDeCuenta(esDeCredito);
-  }
-  private esCredito(): boolean {
-    if(this.tipoCuenta.value==="cuentaDeCredito"){
-      return true;
-    }
-    return false
-  }
+ 
 
   manejarDocumento(event: Event) {//metodo que confirma que se subio un archivo a selector de archivos (para el documento de identidad)
     const input = event.target as HTMLInputElement;
@@ -112,6 +89,15 @@ export class TipoCuentaComponent {
 
   // Inside the onSubmit method, emit the form data to the parent component
   onSubmit() {
-    this.componentsService.updateFormValues(this.myForm.value);
-  }
+    this.componentsService.updateFormValues({tipoDeCuenta:this.myForm.value});
+      const formValues = this.myForm.value;
+      console.log(formValues);
+      // Do something with the form values
+    
+    
+    }
+    onRadioChange(value: string) {
+      this.tipoCuenta = value;
+      this.componentsService.setShowDetails(value === 'cuentaDeCredito');
+    }
 }

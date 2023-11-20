@@ -5,21 +5,22 @@
   </head>
   <body>
     <h3>Motivo del Tramite</h3>
-    
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <div class="campoIngreso">
       <h4>Tipo de cuenta:</h4>
-      <form>
+      
         <p class="prompt">Ingrese su Nit:</p>
+        
         <label>
-          <input type="radio" name="tipoCuenta" [formControl]="tipoCuenta" value="cuentaDeAhorros">
+          <input type="radio" name="tipoCuenta" formControlName="tipoCuenta" value="cuentaDeAhorros" (change)="onRadioChange('cuentaDeAhorros')" [checked]="tipoCuenta === 'cuentaDeAhorros'">
           Cuenta de Ahorros
         </label>
         <br>
         <label> 
-          <input type="radio" name="tipoCuenta" [formControl]="tipoCuenta" value="cuentaDeCredito">
+          <input type="radio" name="tipoCuenta" formControlName="tipoCuenta" value="cuentaDeCredito" (change)="onRadioChange('cuentaDeCredito')" [checked]="tipoCuenta === 'cuentaDeCredito'">
           Cuenta de Crédito
         </label>
-      </form>
+    
     </div>
 
     <div class="campoIngreso">
@@ -27,56 +28,56 @@
       <form>
         <p class="prompt">Seleccione el tipo de responsabilidad:</p>
         <label>
-          <input type="radio" name="personType" [formControl]="responsabilidadPersona" value="personaJuridica" (change)="toggleInputField($event)">
+          <input type="radio" name="responsabilidadPersona" formControlName="responsabilidadPersona" value="personaJuridica" (change)="toggleInputField($event)">
           Persona Jurídica
         </label>
         <br>
         <label>
-          <input type="radio" name="personType" [formControl]="responsabilidadPersona" value="personaNatural" (change)="toggleInputField($event)">
+          <input type="radio" name="responsabilidadPersona"formControlName="responsabilidadPersona" value="personaNatural" (change)="toggleInputField($event)">
           Persona Natural
         </label>
       </form>
       
       <div id="inputText" *ngIf="showInputText">
         <p class="prompt">Ingrese su Nit:</p>
-        <input type="text" [formControl]="nitOpcional">
+        <input type="text" formControlName="nitOpcional">
       </div>
     </div>
 
     <div class="campoIngreso">
-      <p class="prompt" [formControl]="motivo">Indique el motivo para crear la cuenta:</p>
-      <input type="text" [formControl]="motivo">
+      <p class="prompt">Indique el motivo para crear la cuenta:</p>
+      <input type="text" formControlName="motivo">
     </div>
 
     <div class="campoIngreso">
       <p class="prompt">Adjunte una fotocopia de su documento de identidad</p>
-      <input type="file" [formControl]="docIdentidad" (change)="manejarDocumento($event)">
+      <input type="file" formControlName="docIdentidad" (change)="manejarDocumento($event)">
     </div>
 
     <div class="campoIngreso">
       <p class="prompt">Adjunte una foto suya (que muestre su cara)</p>
-      <input type="file" [formControl]="docImagen" (change)="manejarImagen($event)">
+      <input type="file" formControlName="docImagen" (change)="manejarImagen($event)">
     </div>
 
     <div class="campoIngreso">
       <p class="prompt">Adjunte su firma virtual:</p>
-      <input type="file" [formControl]="docFirma" (change)="manejarFirma($event)">
+      <input type="file" formControlName="docFirma" (change)="manejarFirma($event)">
     </div>
 
     <div class="campoIngreso">
       <p class="prompt">Adjunte una factura de servicios públicos de su vivienda actual:</p>
-      <input type="file" [formControl]="docFactura" (change)="manejarFactura($event)">
+      <input type="file" formControlName="docFactura" (change)="manejarFactura($event)">
     </div>
 
     <div class="campoIngreso">
       <p class="prompt">Indique la duración deseada de la cuenta:</p>
-      <input type="text" [formControl]="duracion">
+      <input type="text" formControlName="duracion">
     </div>
 
     <div class="campoIngreso">
       <p class="prompt">Ingrese el valor del depósito inicial que hará a la cuenta:</p>
-      <input type="text" [formControl]="depositoIncial">
+      <input type="text" formControlName="depositoIncial">
     </div>
-
+  </form>
   </body>
 </html>

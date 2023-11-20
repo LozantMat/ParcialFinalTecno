@@ -29,4 +29,10 @@ private formValuesSource = new BehaviorSubject<any>(null);
     // Generate a random 10-digit number
     return Math.floor(1000000000 + Math.random() * 9000000000).toString();
   }
+  private showDetailsSubject = new BehaviorSubject<boolean>(false);
+  showDetails$ = this.showDetailsSubject.asObservable();
+
+  setShowDetails(value: boolean) {
+    this.showDetailsSubject.next(value);
+  }
 }
