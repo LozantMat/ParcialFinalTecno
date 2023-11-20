@@ -27,7 +27,7 @@ export class DatosPersonalesComponent {
       direccion: ['', Validators.required],
       pais: ['', Validators.required],
       estrato: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
+      fechaNacimiento: [''],
       tipoDocumento: ['', Validators.required],
       estadoCivil: ['', Validators.required],
       numeroIdentificacion: ['', Validators.required],
@@ -65,7 +65,7 @@ export class DatosPersonalesComponent {
 
   // Inside the onSubmit method, emit the form data to the parent component
   onSubmit() {
-    this.componentsService.updateFormValues(this.myForm.value);
+    this.componentsService.updateFormValues({ datosPersonales: this.myForm.value });
     const formValues = this.myForm.value;
     console.log(formValues);
     // Do something with the form values

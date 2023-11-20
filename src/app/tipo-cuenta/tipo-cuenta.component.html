@@ -25,7 +25,7 @@
 
     <div class="campoIngreso">
       <h4>Responsabilidad</h4>
-      <form>
+      
         <p class="prompt">Seleccione el tipo de responsabilidad:</p>
         <label>
           <input type="radio" name="responsabilidadPersona" formControlName="responsabilidadPersona" value="personaJuridica" (change)="toggleInputField($event)">
@@ -36,7 +36,7 @@
           <input type="radio" name="responsabilidadPersona"formControlName="responsabilidadPersona" value="personaNatural" (change)="toggleInputField($event)">
           Persona Natural
         </label>
-      </form>
+      
       
       <div id="inputText" *ngIf="showInputText">
         <p class="prompt">Ingrese su Nit:</p>
