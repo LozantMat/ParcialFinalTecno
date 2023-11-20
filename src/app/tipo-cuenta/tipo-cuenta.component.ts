@@ -10,16 +10,6 @@ import { ComponentsService } from 'src/services/components.service';
 })
 export class TipoCuentaComponent {
   //Decalracion variables de clase
-  tipoCuenta = new FormControl();
-  responsabilidadPersona = new FormControl();
-  nitOpcional = new FormControl();
-  motivo = new FormControl();
-  docIdentidad = new FormControl();
-  docImagen = new FormControl();
-  docFirma = new FormControl();
-  docFactura = new FormControl();
-  duracion = new FormControl();
-  depositoIncial = new FormControl();
 
   myForm: FormGroup;
   constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
@@ -87,7 +77,12 @@ export class TipoCuentaComponent {
   @Output() datosEnviados = new EventEmitter<any>();
 
   // Inside the onSubmit method, emit the form data to the parent component
-  onSubmit() {
-    this.componentsService.updateFormValues(this.myForm.value);
+  onRadioChange() {
+   const tipoCuentaControl = this.myForm.get('tipoCuenta');
+  if (tipoCuentaControl) {
+    const selectedTipoCuenta = tipoCuentaControl.value;
+    console.log('Selected Tipo de Cuenta:', selectedTipoCuenta);
+    console.log('Form State:', this.myForm.value);
+  }
   }
 }

@@ -14,20 +14,8 @@ export class DatosPersonalesComponent {
 
   @Output() fechaNacimientoCambiada = new EventEmitter<string>();
     //Decalracion variables de clase
-    nombre = new FormControl();
-    apellido = new FormControl();
-    telefono = new FormControl();
-    correo = new FormControl();
-    direccion = new FormControl();
-    pais = new FormControl();
-    estrato = new FormControl();
-    fechaNacimiento = new FormControl();
-    tipoDocumento = new FormControl();
-    estadoCivil = new FormControl();
-    numeroIdentificacion = new FormControl();
   
     myForm: FormGroup;
-  
     constructor(private fb: FormBuilder, private componentsService:ComponentsService) {
       this.myForm = this.fb.group({
         nombre: ['', Validators.required],
@@ -43,6 +31,8 @@ export class DatosPersonalesComponent {
         numeroIdentificacion: ['', Validators.required],
       });
     }
+
+    fechaNacimiento = new FormControl();
 
     fechaNacimientoSeleccionada() {
       // Llama al servicio para actualizar el estado
@@ -68,11 +58,11 @@ export class DatosPersonalesComponent {
   @Output() datosEnviados = new EventEmitter<any>();
 
 // Inside the onSubmit method, emit the form data to the parent component
-onSubmit() {
+  onSubmit() {
   this.componentsService.updateFormValues(this.myForm.value);
-}
+  }
 
-  validarFecha(event:Event){ //realiza la verificacion de la fecha. La restringe dentro de los dos proximos meses. Si no cumple con este limite, pone el campo en blanco
+    validarFecha(event:Event){ //realiza la verificacion de la fecha. La restringe dentro de los dos proximos meses. Si no cumple con este limite, pone el campo en blanco
     const inputElement = event.target as HTMLInputElement;
     const date = new Date(inputElement.value);
     const currentDate = new Date();
