@@ -7,8 +7,9 @@
   <!-- confirmacion-ahorros.component.html -->
 <div *ngIf="mostrarDatos">
   <h2>Confirmation Details</h2>
-  <p>Name: {{ mostrarDatos.nombre }}</p>
-  <p>Type of Account: {{ mostrarDatos.tipoCuenta }}</p>
+  <p>Data in template: {{ mostrarDatos | json }}</p>
+  <p>Name: {{ mostrarDatos?.datosPersonales.nombre }}</p>
+  <p>Type of Account: {{ mostrarDatos?.tipoDeCuenta.tipoCuenta }}</p>
   <p>Random 10-Digit Number: {{ randomNumber }}</p>
   <!-- Display other confirmation details as needed -->
 </div>
